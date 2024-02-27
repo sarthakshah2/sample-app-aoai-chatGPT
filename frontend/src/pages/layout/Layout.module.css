@@ -14,8 +14,8 @@
 }
 
 .customStack {
-    width: 100%;
-    display: block !important;
+  width: 100%;
+  display: block !important;
 }
 
 .headerIconMain {
@@ -60,18 +60,21 @@
   padding: 10px 10px;
 }
 
-.username{
-  font-weight: bold;
+.usercontainer {
   display: inline-flex;
   align-items: center;
   flex-direction: column;
-  margin-left: -5px;
 }
 
-.userIcon{
+.userIcon {
   height: 40px;
   width: 40px;
   font-weight: bolder;
+}
+
+.username {
+  font-weight: bold;
+  margin-left: -5px;
 }
 
 .shareButtonContainer {

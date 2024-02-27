@@ -166,11 +166,11 @@ const Layout = () => {
                   </Link>
                 </div>
                 {userName && (
-                  <div className={styles.username}>
+                  <div className={styles.usercontainer}>
                     <div className={styles.userIcon}>
-                      <FaUserCircle  />
+                      <FaUserCircle />
                     </div>
-                    {userName}
+                    <div className={styles.username}>{userName}</div>
                   </div>
                 )}
                 <div className={styles.buttonDiv}>
