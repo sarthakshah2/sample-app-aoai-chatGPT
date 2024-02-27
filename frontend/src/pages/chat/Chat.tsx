@@ -755,18 +755,20 @@ const Chat = () => {
         </Stack>
       ) : (
         <Stack horizontal className={styles.chatRoot}>
-          {userName && <div>{userName}</div>}
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
+                {userName && <div>{userName}</div>}
+
                 <img
                   src={Contoso}
                   className={styles.chatIcon}
                   aria-hidden="true"
                 />
                 <h2 className={styles.chatEmptyStateSubtitle}>
-                  This AI assistant is designed to answer your queries related to SoM, SBC, Development Kits &
-                  Accessories for the Qualcomm® Product Line and other processors.
+                  This AI assistant is designed to answer your queries related
+                  to SoM, SBC, Development Kits & Accessories for the Qualcomm®
+                  Product Line and other processors.
                 </h2>
 
                 <div className={styles.boxesContainer}>
