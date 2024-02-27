@@ -14,13 +14,15 @@ import styles from "./Layout.module.css";
 import Contoso from "../../assets/eic-arrow-logo-dark-1.png";
 import { HistoryButton, ContactUsButton } from "../../components/common/Button";
 import { AppStateContext } from "../../state/AppProvider";
-import { CosmosDBStatus } from "../../api";
+import { CosmosDBStatus, getUserInfo } from "../../api";
 
 const Layout = () => {
   const [isSharePanelOpen, setIsSharePanelOpen] = useState<boolean>(false);
   const [copyClicked, setCopyClicked] = useState<boolean>(false);
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const appStateContext = useContext(AppStateContext);
+  const AUTH_ENABLED = appStateContext?.state.frontendSettings?.auth_enabled;
+  const [showAuthMessage, setShowAuthMessage] = useState<boolean>(true);
 
   // Example chat histories - replace this with your dynamic data
   const chatHistories = ["Chat 1", "Chat 2", "Chat 3", "Chat 4"];
@@ -48,6 +50,30 @@ const Layout = () => {
     console.log("Clicked");
   };
 
+  const getUserInfoList = async () => {
+    if (!AUTH_ENABLED) {
+      setShowAuthMessage(false);
+      return;
+    }
+    const userInfoList = await getUserInfo();
+    console.log("UserInfoList: " + userInfoList);
+
+    let nameObj = userInfoList[0].user_claims.find(
+      (claim) => claim.typ === "name"
+    );
+    console.log("nameObj: " + nameObj);
+
+    let userName = nameObj ? nameObj.val : "Default Name";
+
+    console.log("UserName: " + userName);
+    
+    if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
+      setShowAuthMessage(true);
+    } else {
+      setShowAuthMessage(false);
+    }
+  };
+
   useEffect(() => {
     if (copyClicked) {
       setCopyText("Copied URL");
@@ -66,7 +92,6 @@ const Layout = () => {
           horizontalAlign="end"
         >
           <Stack horizontal verticalAlign="center">
-
             <div className={styles.headerIconMain}>
               <img
                 src={Contoso}
@@ -83,7 +108,7 @@ const Layout = () => {
                 aria-label="eInfochips Copilot - FAE's Personal AI Assistant"
               >
                 <h1 className={styles.headerTitle}>
-                eInfochips Copilot - FAE's Personal AI Assistant
+                  eInfochips Copilot - FAE's Personal AI Assistant
                 </h1>
               </Link>
             </div>
@@ -105,7 +130,10 @@ const Layout = () => {
                   )}
                 </HistoryButton>
               )}
-              <a href="mailto:sarthak.shah@einfochips.com" style={{ textDecoration: 'none' }}>
+              <a
+                href="mailto:sarthak.shah@einfochips.com"
+                style={{ textDecoration: "none" }}
+              >
                 <ContactUsButton
                   onClick={handleContactUsClick}
                   text="Contact Us"
