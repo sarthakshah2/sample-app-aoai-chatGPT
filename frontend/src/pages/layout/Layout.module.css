@@ -61,10 +61,10 @@
 }
 
 .username{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .userIcon{
