@@ -165,7 +165,14 @@ const Layout = () => {
                     </h1>
                   </Link>
                 </div>
-                {userName && <div><FaUserCircle className={styles.userIcon} />{userName}</div>}
+                {userName && (
+                  <div className={styles.username}>
+                    <div className={styles.userIcon}>
+                      <FaUserCircle  />
+                    </div>
+                    {userName}
+                  </div>
+                )}
                 <div className={styles.buttonDiv}>
                   {appStateContext?.state.isCosmosDBAvailable?.status !==
                     CosmosDBStatus.NotConfigured && (
