@@ -79,6 +79,7 @@ const Chat = () => {
   const [clearingChat, setClearingChat] = useState<boolean>(false);
   const [hideErrorDialog, { toggle: toggleErrorDialog }] = useBoolean(true);
   const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>();
+  let userName;
 
   const errorDialogContentProps = {
     type: DialogType.close,
@@ -134,13 +135,13 @@ const Chat = () => {
     }
     const userInfoList = await getUserInfo();
     console.log("UserInfoList: " + userInfoList);
-    
+
     let nameObj = userInfoList[0].user_claims.find(
       (claim) => claim.typ === "name"
     );
     console.log("nameObj: " + nameObj);
 
-    let userName = nameObj ? nameObj.val : "Default Name";
+    userName = nameObj ? nameObj.val : "Default Name";
 
     console.log("UserName: " + userName);
     if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
@@ -750,6 +751,7 @@ const Chat = () => {
         </Stack>
       ) : (
         <Stack horizontal className={styles.chatRoot}>
+          {userName && <div>{userName}</div>}
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
