@@ -23,6 +23,7 @@ const Layout = () => {
   const appStateContext = useContext(AppStateContext);
   const AUTH_ENABLED = appStateContext?.state.frontendSettings?.auth_enabled;
   const [showAuthMessage, setShowAuthMessage] = useState<boolean>(true);
+  const [userName, setUserName] = useState("");
 
   // Example chat histories - replace this with your dynamic data
   const chatHistories = ["Chat 1", "Chat 2", "Chat 3", "Chat 4"];
@@ -56,17 +57,19 @@ const Layout = () => {
       return;
     }
     const userInfoList = await getUserInfo();
-    console.log("UserInfoList: " + userInfoList);
+    console.log("Layout UserInfoList: " + userInfoList);
 
     let nameObj = userInfoList[0].user_claims.find(
       (claim) => claim.typ === "name"
     );
-    console.log("nameObj: " + nameObj);
+    console.log("Layout nameObj: " + nameObj);
 
-    let userName = nameObj ? nameObj.val : "Default Name";
+    let value = nameObj ? nameObj.val : "Default Name";
+    setUserName(value);
+    // let userName = nameObj ? nameObj.val : "Default Name";
 
-    console.log("UserName: " + userName);
-    
+    console.log("Layout UserName: " + userName);
+
     if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
       setShowAuthMessage(true);
     } else {
@@ -81,6 +84,8 @@ const Layout = () => {
   }, [copyClicked]);
 
   useEffect(() => {}, [appStateContext?.state.isCosmosDBAvailable.status]);
+
+  console.log("Layout UserName: " + userName);
 
   return (
     <div className={styles.layout}>
@@ -112,6 +117,9 @@ const Layout = () => {
                 </h1>
               </Link>
             </div>
+            {userName && <div className={styles.buttonDiv}>
+                <span>{userName}</span>
+              </div>}
             <div className={styles.buttonDiv}>
               {appStateContext?.state.isCosmosDBAvailable?.status !==
                 CosmosDBStatus.NotConfigured && (
