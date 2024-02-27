@@ -65,6 +65,7 @@
   display: inline-flex;
   align-items: center;
   flex-direction: column;
+  margin-left: -5px;
 }
 
 .userIcon{
