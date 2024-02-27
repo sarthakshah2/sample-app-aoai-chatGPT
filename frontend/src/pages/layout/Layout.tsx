@@ -168,7 +168,7 @@ const Layout = () => {
                 {userName && (
                   <div className={styles.usercontainer}>
                     <div className={styles.userIcon}>
-                      <FaUserCircle />
+                      <FaUserCircle className={styles.userIcon}/>
                     </div>
                     <div className={styles.username}>{userName}</div>
                   </div>

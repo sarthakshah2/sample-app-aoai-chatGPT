@@ -66,10 +66,13 @@
   flex-direction: column;
 }
 
+.userIconContainer {
+  font-weight: bolder;
+}
+
 .userIcon {
   height: 40px;
   width: 40px;
-  font-weight: bolder;
 }
 
 .username {
