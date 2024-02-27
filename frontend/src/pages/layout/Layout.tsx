@@ -4,6 +4,7 @@ import {
   ShareRegular,
   ShieldLockRegular,
 } from "@fluentui/react-icons";
+import { FaUserCircle } from "react-icons/fa";
 import {
   Dialog,
   Stack,
@@ -61,18 +62,13 @@ const Layout = () => {
       return;
     }
     const userInfoList = await getUserInfo();
-    console.log("Layout UserInfoList: " + userInfoList);
 
     let nameObj = userInfoList[0].user_claims.find(
       (claim) => claim.typ === "name"
     );
-    console.log("Layout nameObj: " + nameObj);
 
     let value = nameObj ? nameObj.val : "Default Name";
     setUserName(value);
-    // let userName = nameObj ? nameObj.val : "Default Name";
-
-    console.log("Layout UserName: " + userName);
 
     if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
       setShowAuthMessage(true);
@@ -92,8 +88,6 @@ const Layout = () => {
   }, [copyClicked]);
 
   useEffect(() => {}, [appStateContext?.state.isCosmosDBAvailable.status]);
-
-  console.log("Layout UserName: " + userName);
 
   return (
     <div className={styles.layout}>
@@ -171,7 +165,7 @@ const Layout = () => {
                     </h1>
                   </Link>
                 </div>
-                {userName && <div>{userName}</div>}
+                {userName && <div><FaUserCircle className={styles.userIcon} />{userName}</div>}
                 <div className={styles.buttonDiv}>
                   {appStateContext?.state.isCosmosDBAvailable?.status !==
                     CosmosDBStatus.NotConfigured && (

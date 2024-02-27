@@ -64,6 +64,12 @@
   font-weight: bold;
 }
 
+.userIcon{
+  height: 40px;
+  width: 40px;
+  font-weight: bolder;
+}
+
 .shareButtonContainer {
   display: flex;
   flex-direction: row;
