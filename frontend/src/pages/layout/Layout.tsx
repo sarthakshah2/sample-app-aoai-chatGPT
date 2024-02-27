@@ -1,5 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
-import { CopyRegular, ShareRegular } from "@fluentui/react-icons";
+import {
+  CopyRegular,
+  ShareRegular,
+  ShieldLockRegular,
+} from "@fluentui/react-icons";
 import {
   Dialog,
   Stack,
@@ -78,6 +82,10 @@ const Layout = () => {
   };
 
   useEffect(() => {
+    if (AUTH_ENABLED !== undefined) getUserInfoList();
+  }, [AUTH_ENABLED]);
+
+  useEffect(() => {
     if (copyClicked) {
       setCopyText("Copied URL");
     }
@@ -89,68 +97,112 @@ const Layout = () => {
 
   return (
     <div className={styles.layout}>
-      <header className={styles.header} role={"banner"}>
-        <Stack
-          className={styles.customStack}
-          horizontal
-          verticalAlign="center"
-          horizontalAlign="end"
-        >
-          <Stack horizontal verticalAlign="center">
-            <div className={styles.headerIconMain}>
-              <img
-                src={Contoso}
-                className={styles.headerIcon}
-                aria-hidden="true"
-                alt="eInfochips Co-Pilot Logo"
-              />
-            </div>
+      {showAuthMessage ? (
+        <Stack className={styles.chatEmptyState}>
+          <ShieldLockRegular
+            className={styles.chatIcon}
+            style={{ color: "darkorange", height: "200px", width: "200px" }}
+          />
+          <h1 className={styles.chatEmptyStateTitle}>
+            Authentication Not Configured
+          </h1>
+          <h2 className={styles.chatEmptyStateSubtitle}>
+            This app does not have authentication configured. Please add an
+            identity provider by finding your app in the
+            <a href="https://portal.azure.com/" target="_blank">
+              {" "}
+              Azure Portal{" "}
+            </a>
+            and following
+            <a
+              href="https://learn.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service#3-configure-authentication-and-authorization"
+              target="_blank"
+            >
+              {" "}
+              these instructions
+            </a>
+            .
+          </h2>
+          <h2
+            className={styles.chatEmptyStateSubtitle}
+            style={{ fontSize: "20px" }}
+          >
+            <strong>
+              Authentication configuration takes a few minutes to apply.{" "}
+            </strong>
+          </h2>
+          <h2
+            className={styles.chatEmptyStateSubtitle}
+            style={{ fontSize: "20px" }}
+          >
+            <strong>
+              If you deployed in the last 10 minutes, please wait and reload the
+              page after 10 minutes.
+            </strong>
+          </h2>
+        </Stack>
+      ) : (
+        <>
+          <header className={styles.header} role={"banner"}>
+            <Stack
+              className={styles.customStack}
+              horizontal
+              verticalAlign="center"
+              horizontalAlign="end"
+            >
+              <Stack horizontal verticalAlign="center">
+                <div className={styles.headerIconMain}>
+                  <img
+                    src={Contoso}
+                    className={styles.headerIcon}
+                    aria-hidden="true"
+                    alt="eInfochips Co-Pilot Logo"
+                  />
+                </div>
 
-            <div className={styles.centerHeader}>
-              <Link
-                to="/"
-                className={styles.headerTitleContainer}
-                aria-label="eInfochips Copilot - FAE's Personal AI Assistant"
-              >
-                <h1 className={styles.headerTitle}>
-                  eInfochips Copilot - FAE's Personal AI Assistant
-                </h1>
-              </Link>
-            </div>
-            {userName && <div className={styles.buttonDiv}>
-                <span>{userName}</span>
-              </div>}
-            <div className={styles.buttonDiv}>
-              {appStateContext?.state.isCosmosDBAvailable?.status !==
-                CosmosDBStatus.NotConfigured && (
-                <HistoryButton
-                  onClick={handleHistoryClick}
-                  text={
-                    appStateContext?.state?.isChatHistoryOpen
-                      ? "Hide chat history"
-                      : "Show chat history"
-                  }
-                >
-                  {appStateContext?.state?.isChatHistoryOpen ? (
-                    <MdVisibility />
-                  ) : (
-                    <MdVisibilityOff />
+                <div className={styles.centerHeader}>
+                  <Link
+                    to="/"
+                    className={styles.headerTitleContainer}
+                    aria-label="eInfochips Copilot - FAE's Personal AI Assistant"
+                  >
+                    <h1 className={styles.headerTitle}>
+                      eInfochips Copilot - FAE's Personal AI Assistant
+                    </h1>
+                  </Link>
+                </div>
+                {userName && <div>{userName}</div>}
+                <div className={styles.buttonDiv}>
+                  {appStateContext?.state.isCosmosDBAvailable?.status !==
+                    CosmosDBStatus.NotConfigured && (
+                    <HistoryButton
+                      onClick={handleHistoryClick}
+                      text={
+                        appStateContext?.state?.isChatHistoryOpen
+                          ? "Hide chat history"
+                          : "Show chat history"
+                      }
+                    >
+                      {appStateContext?.state?.isChatHistoryOpen ? (
+                        <MdVisibility />
+                      ) : (
+                        <MdVisibilityOff />
+                      )}
+                    </HistoryButton>
                   )}
-                </HistoryButton>
-              )}
-              <a
-                href="mailto:sarthak.shah@einfochips.com"
-                style={{ textDecoration: "none" }}
-              >
-                <ContactUsButton
-                  onClick={handleContactUsClick}
-                  text="Contact Us"
-                ></ContactUsButton>
-              </a>
-            </div>
-          </Stack>
-          <Stack horizontal tokens={{ childrenGap: 10 }}>
-            {/* {appStateContext?.state.isCosmosDBAvailable?.status !==
+                  <a
+                    href="mailto:sarthak.shah@einfochips.com"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <ContactUsButton
+                      onClick={handleContactUsClick}
+                      text="Contact Us"
+                    ></ContactUsButton>
+                  </a>
+                </div>
+              </Stack>
+              <Stack horizontal tokens={{ childrenGap: 10 }}>
+                {/* {appStateContext?.state.isCosmosDBAvailable?.status !==
               CosmosDBStatus.NotConfigured && (
               <HistoryButton
                 onClick={handleHistoryClick}
@@ -173,65 +225,71 @@ const Layout = () => {
               text="Contact Us"
             ></ContactUsButton> */}
 
-            {/* <button
+                {/* <button
               className={styles.contactUsButton}
               title="Contact Us"
             >Contact Us</button> */}
-          </Stack>
-        </Stack>
-      </header>
-      <Outlet />
-      <Dialog
-        onDismiss={handleSharePanelDismiss}
-        hidden={!isSharePanelOpen}
-        styles={{
-          main: [
-            {
-              selectors: {
-                ["@media (min-width: 480px)"]: {
-                  maxWidth: "600px",
-                  background: "#FFFFFF",
-                  boxShadow:
-                    "0px 14px 28.8px rgba(0, 0, 0, 0.24), 0px 0px 8px rgba(0, 0, 0, 0.2)",
-                  borderRadius: "8px",
+              </Stack>
+            </Stack>
+          </header>
+          <Outlet />
+          <Dialog
+            onDismiss={handleSharePanelDismiss}
+            hidden={!isSharePanelOpen}
+            styles={{
+              main: [
+                {
+                  selectors: {
+                    ["@media (min-width: 480px)"]: {
+                      maxWidth: "600px",
+                      background: "#FFFFFF",
+                      boxShadow:
+                        "0px 14px 28.8px rgba(0, 0, 0, 0.24), 0px 0px 8px rgba(0, 0, 0, 0.2)",
+                      borderRadius: "8px",
+                    },
+                  },
                 },
-              },
-            },
-          ],
-        }}
-        dialogContentProps={{
-          title: "Share the web app",
-          showCloseButton: true,
-        }}
-      >
-        <Stack
-          horizontal
-          verticalAlign="center"
-          tokens={{ childrenGap: 8 }}
-          style={{ gap: "8px" }}
-        >
-          <TextField
-            className={styles.urlTextBox}
-            defaultValue={window.location.href}
-            readOnly
-            underlined
-          />
-          <div
-            className={styles.copyButtonContainer}
-            role="button"
-            tabIndex={0}
-            aria-label="Copy"
-            onClick={handleCopyClick}
-            onKeyDown={(e) =>
-              e.key === "Enter" || e.key === " " ? handleCopyClick() : null
-            }
-            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+              ],
+            }}
+            dialogContentProps={{
+              title: "Share the web app",
+              showCloseButton: true,
+            }}
           >
-            <CopyRegular className={styles.copyButton} />
-            <span className={styles.copyButtonText}>{copyText}</span>
-          </div>
-        </Stack>
-      </Dialog>
+            <Stack
+              horizontal
+              verticalAlign="center"
+              tokens={{ childrenGap: 8 }}
+              style={{ gap: "8px" }}
+            >
+              <TextField
+                className={styles.urlTextBox}
+                defaultValue={window.location.href}
+                readOnly
+                underlined
+              />
+              <div
+                className={styles.copyButtonContainer}
+                role="button"
+                tabIndex={0}
+                aria-label="Copy"
+                onClick={handleCopyClick}
+                onKeyDown={(e) =>
+                  e.key === "Enter" || e.key === " " ? handleCopyClick() : null
+                }
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <CopyRegular className={styles.copyButton} />
+                <span className={styles.copyButtonText}>{copyText}</span>
+              </div>
+            </Stack>
+          </Dialog>
+        </>
+      )}
     </div>
   );
 };
