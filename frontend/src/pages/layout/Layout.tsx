@@ -165,14 +165,6 @@ const Layout = () => {
                     </h1>
                   </Link>
                 </div>
-                {userName && (
-                  <div className={styles.usercontainer}>
-                    <div className={styles.userIcon}>
-                      <FaUserCircle className={styles.userIcon}/>
-                    </div>
-                    <div className={styles.username}>{userName}</div>
-                  </div>
-                )}
                 <div className={styles.buttonDiv}>
                   {appStateContext?.state.isCosmosDBAvailable?.status !==
                     CosmosDBStatus.NotConfigured && (
@@ -193,9 +185,9 @@ const Layout = () => {
                   )}
                   {userName && (
                   <div className={styles.usercontainer}>
-                    <div className={styles.userIcon}>
+                    {/* <div className={styles.userIcon}>
                       <FaUserCircle className={styles.userIcon}/>
-                    </div>
+                    </div> */}
                     <div className={styles.username}>{userName}</div>
                   </div>
                 )}
@@ -234,10 +226,6 @@ const Layout = () => {
               text="Contact Us"
             ></ContactUsButton> */}
 
-                {/* <button
-              className={styles.contactUsButton}
-              title="Contact Us"
-            >Contact Us</button> */}
               </Stack>
             </Stack>
           </header>
