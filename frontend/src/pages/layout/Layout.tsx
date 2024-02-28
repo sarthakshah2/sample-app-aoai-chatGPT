@@ -162,35 +162,37 @@ const Layout = () => {
                   </Link>
                 </div>
                 <div className={styles.buttonDiv}>
-                  {appStateContext?.state.isCosmosDBAvailable?.status !==
-                    CosmosDBStatus.NotConfigured && (
-                    <HistoryButton
-                      onClick={handleHistoryClick}
-                      text={
-                        appStateContext?.state?.isChatHistoryOpen
-                          ? "Hide chat history"
-                          : "Show chat history"
-                      }
-                    >
-                      {appStateContext?.state?.isChatHistoryOpen ? (
-                        <MdVisibility />
-                      ) : (
-                        <MdVisibilityOff />
-                      )}
-                    </HistoryButton>
-                  )}
-                  {userName && (
-                    <ContactUsButton
-                    text={userName}
-                  ></ContactUsButton>
-                    // <div className={styles.usercontainer}>
-                    //   {/* <div className={styles.userIcon}>
-                    //   <FaUserCircle className={styles.userIcon}/>
-                    // </div> */}
-                    //   <div className={styles.username}>{userName}</div>
-                    // </div>
-                  )}
-                  
+                  <div className={styles.historyDiv}>
+                    {appStateContext?.state.isCosmosDBAvailable?.status !==
+                      CosmosDBStatus.NotConfigured && (
+                      <HistoryButton
+                        onClick={handleHistoryClick}
+                        text={
+                          appStateContext?.state?.isChatHistoryOpen
+                            ? "Hide chat history"
+                            : "Show chat history"
+                        }
+                      >
+                        {appStateContext?.state?.isChatHistoryOpen ? (
+                          <MdVisibility className={styles.historyIcon} />
+                        ) : (
+                          <MdVisibilityOff className={styles.historyIcon} />
+                        )}
+                      </HistoryButton>
+                    )}
+                  </div>
+                  <div className={styles.userDiv}>
+                    {userName && (
+                      <ContactUsButton text={userName}></ContactUsButton>
+                      // <div className={styles.usercontainer}>
+                      //   {/* <div className={styles.userIcon}>
+                      //   <FaUserCircle className={styles.userIcon}/>
+                      // </div> */}
+                      //   <div className={styles.username}>{userName}</div>
+                      // </div>
+                    )}
+                  </div>
+
                   {/* <a
                     href="mailto:sarthak.shah@einfochips.com"
                     style={{ textDecoration: "none" }}
@@ -260,10 +262,16 @@ const Layout = () => {
               </div>
             </Stack>
           </Dialog>
-          <div style={{ position: "relative"}}>
+          <div style={{ position: "relative" }}>
             <a
               href="mailto:sarthak.shah@einfochips.com"
-              style={{ textDecoration: "none", position: "absolute", bottom: "0", right: "0", marginRight: "20px" }}
+              style={{
+                textDecoration: "none",
+                position: "absolute",
+                bottom: "0",
+                right: "0",
+                marginRight: "20px",
+              }}
             >
               Share Your Feedback
             </a>
