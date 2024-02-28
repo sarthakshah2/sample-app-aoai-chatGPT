@@ -181,7 +181,7 @@ const Layout = () => {
                   )}
                   {userName && (
                     <ContactUsButton
-                    text="{userName}"
+                    text={userName}
                   ></ContactUsButton>
                     // <div className={styles.usercontainer}>
                     //   {/* <div className={styles.userIcon}>
