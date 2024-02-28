@@ -17,6 +17,7 @@ import {
   ShieldLockRegular,
   ErrorCircleRegular,
 } from "@fluentui/react-icons";
+import { FaMicrophone } from "react-icons/fa";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -915,7 +916,7 @@ const Chat = () => {
                   }}
                   aria-label="clear chat button"
                 />
-
+                <FaMicrophone className={styles.microphoneIconStyle} />
                 <Dialog
                   hidden={hideErrorDialog}
                   onDismiss={handleErrorDialogClose}
