@@ -256,10 +256,10 @@ const Layout = () => {
               </div>
             </Stack>
           </Dialog>
-          <div>
+          <div style={{ position: "relative"}}>
             <a
               href="mailto:sarthak.shah@einfochips.com"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", position: "absolute", bottom: "0", right: "0" }}
             >
               Share Your Feedback
             </a>
