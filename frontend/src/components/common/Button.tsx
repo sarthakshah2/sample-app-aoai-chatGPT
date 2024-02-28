@@ -36,7 +36,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ onClick }) => {
       fontWeight: 600,
       fontSize: 14,
       lineHeight: "20px",
-      color: "#000000",
+      color: "#FFFFFF",
     },
   };
 
