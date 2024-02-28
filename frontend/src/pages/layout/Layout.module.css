@@ -62,8 +62,16 @@
   color: #ffffff;
 }
 
-.historyIcon {
-  color: #ffffff;
+.historyDiv {
+  margin-right: 20px;
+}
+
+.userDiv {
+}
+
+.historyIcon,
+.MdVisibilityOff {
+  color: white;
 }
 
 .usercontainer {
