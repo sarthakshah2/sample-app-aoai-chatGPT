@@ -58,7 +58,8 @@
   justify-content: flex-end;
   align-items: center;
   padding: 10px 10px;
-  margin-right: auto;
+  /* margin-right: auto; */
+  margin-right: 10px;
 }
 
 .usercontainer {
