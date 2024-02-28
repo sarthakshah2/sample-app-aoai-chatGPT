@@ -58,12 +58,14 @@
   justify-content: flex-end;
   align-items: center;
   padding: 10px 10px;
+  margin-right: auto;
 }
 
 .usercontainer {
   display: inline-flex;
   align-items: center;
   flex-direction: column;
+  margin-left: auto;
 }
 
 .userIconContainer {
