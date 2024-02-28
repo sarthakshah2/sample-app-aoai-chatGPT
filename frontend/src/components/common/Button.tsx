@@ -61,7 +61,7 @@ export const HistoryButton: React.FC<HistoryButtonProps> = ({
 }) => {
   const historyButtonStyles: ICommandBarStyles & IButtonStyles = {
     root: {
-      width: '180px',
+      width: "180px",
       // width: "70px",
       alignItems: "center",
       justifyContent: "end",
@@ -76,6 +76,9 @@ export const HistoryButton: React.FC<HistoryButtonProps> = ({
     },
     rootPressed: {
       border: `1px solid #D1D1D1`,
+    },
+    label: {
+      color: "#FFFFFF",
     },
   };
 
@@ -100,7 +103,8 @@ export const ContactUsButton: React.FC<ContactUsButtonProps> = ({
 }) => {
   const contactUsButtonStyles: ICommandBarStyles & IButtonStyles = {
     root: {
-      width: '150px',
+      // width: '150px',
+      width: "auto",
       alignItems: "center",
       justifyContent: "end",
       border: `1px solid #D1D1D1`,
@@ -114,6 +118,9 @@ export const ContactUsButton: React.FC<ContactUsButtonProps> = ({
     },
     rootPressed: {
       border: `1px solid #D1D1D1`,
+    },
+    label: {
+      color: "#FFFFFF",
     },
   };
 
