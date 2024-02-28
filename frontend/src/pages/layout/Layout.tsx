@@ -180,13 +180,17 @@ const Layout = () => {
                     </HistoryButton>
                   )}
                   {userName && (
-                    <div className={styles.usercontainer}>
-                      {/* <div className={styles.userIcon}>
-                      <FaUserCircle className={styles.userIcon}/>
-                    </div> */}
-                      <div className={styles.username}>{userName}</div>
-                    </div>
+                    <ContactUsButton
+                    text="{userName}"
+                  ></ContactUsButton>
+                    // <div className={styles.usercontainer}>
+                    //   {/* <div className={styles.userIcon}>
+                    //   <FaUserCircle className={styles.userIcon}/>
+                    // </div> */}
+                    //   <div className={styles.username}>{userName}</div>
+                    // </div>
                   )}
+                  
                   {/* <a
                     href="mailto:sarthak.shah@einfochips.com"
                     style={{ textDecoration: "none" }}
