@@ -52,10 +52,6 @@ const Layout = () => {
     appStateContext?.dispatch({ type: "TOGGLE_CHAT_HISTORY" });
   };
 
-  const handleContactUsClick = () => {
-    console.log("Clicked");
-  };
-
   const getUserInfoList = async () => {
     if (!AUTH_ENABLED) {
       setShowAuthMessage(false);
@@ -184,13 +180,13 @@ const Layout = () => {
                     </HistoryButton>
                   )}
                   {userName && (
-                  <div className={styles.usercontainer}>
-                    {/* <div className={styles.userIcon}>
+                    <div className={styles.usercontainer}>
+                      {/* <div className={styles.userIcon}>
                       <FaUserCircle className={styles.userIcon}/>
                     </div> */}
-                    <div className={styles.username}>{userName}</div>
-                  </div>
-                )}
+                      <div className={styles.username}>{userName}</div>
+                    </div>
+                  )}
                   {/* <a
                     href="mailto:sarthak.shah@einfochips.com"
                     style={{ textDecoration: "none" }}
@@ -201,31 +197,6 @@ const Layout = () => {
                     ></ContactUsButton>
                   </a> */}
                 </div>
-              </Stack>
-              <Stack horizontal tokens={{ childrenGap: 10 }}>
-                {/* {appStateContext?.state.isCosmosDBAvailable?.status !==
-              CosmosDBStatus.NotConfigured && (
-              <HistoryButton
-                onClick={handleHistoryClick}
-                text={
-                  appStateContext?.state?.isChatHistoryOpen
-                    ? "Hide chat history"
-                    : "Show chat history"
-                }
-              >
-                {appStateContext?.state?.isChatHistoryOpen ? (
-                  <MdVisibility />
-                ) : (
-                  <MdVisibilityOff />
-                )}
-              </HistoryButton>
-            )}
-
-            <ContactUsButton
-              onClick={handleContactUsClick}
-              text="Contact Us"
-            ></ContactUsButton> */}
-
               </Stack>
             </Stack>
           </header>
@@ -285,6 +256,14 @@ const Layout = () => {
               </div>
             </Stack>
           </Dialog>
+          <div>
+            <a
+              href="mailto:sarthak.shah@einfochips.com"
+              style={{ textDecoration: "none" }}
+            >
+              Share Your Feedback
+            </a>
+          </div>
         </>
       )}
     </div>
