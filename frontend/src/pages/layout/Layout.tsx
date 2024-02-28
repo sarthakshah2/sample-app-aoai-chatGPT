@@ -259,7 +259,7 @@ const Layout = () => {
           <div style={{ position: "relative"}}>
             <a
               href="mailto:sarthak.shah@einfochips.com"
-              style={{ textDecoration: "none", position: "absolute", bottom: "0", right: "0" }}
+              style={{ textDecoration: "none", position: "absolute", bottom: "0", right: "0", marginRight: "20px" }}
             >
               Share Your Feedback
             </a>
