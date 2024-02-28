@@ -191,7 +191,15 @@ const Layout = () => {
                       )}
                     </HistoryButton>
                   )}
-                  <a
+                  {userName && (
+                  <div className={styles.usercontainer}>
+                    <div className={styles.userIcon}>
+                      <FaUserCircle className={styles.userIcon}/>
+                    </div>
+                    <div className={styles.username}>{userName}</div>
+                  </div>
+                )}
+                  {/* <a
                     href="mailto:sarthak.shah@einfochips.com"
                     style={{ textDecoration: "none" }}
                   >
@@ -199,7 +207,7 @@ const Layout = () => {
                       onClick={handleContactUsClick}
                       text="Contact Us"
                     ></ContactUsButton>
-                  </a>
+                  </a> */}
                 </div>
               </Stack>
               <Stack horizontal tokens={{ childrenGap: 10 }}>
