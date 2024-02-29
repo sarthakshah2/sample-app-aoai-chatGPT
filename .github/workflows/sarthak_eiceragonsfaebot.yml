@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'eiceragonsfaebot'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3DF02DC1D8104D798B715037E0AAEC80 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA0B9632CAEA4FFF893E00C11BCF85E8 }}
