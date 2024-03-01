@@ -5,6 +5,7 @@ import {
   ShieldLockRegular,
 } from "@fluentui/react-icons";
 import { FaUserCircle } from "react-icons/fa";
+import { MdContactMail } from "react-icons/md";
 import {
   Dialog,
   Stack,
@@ -133,67 +134,67 @@ const Layout = () => {
         </Stack>
       ) : (
         <>
-          <header className={styles.header} role={"banner"}>
-            <Stack
-              className={styles.customStack}
-              horizontal
-              verticalAlign="center"
-              horizontalAlign="end"
-            >
-              <Stack horizontal verticalAlign="center">
-                <div className={styles.headerIconMain}>
-                  <img
-                    src={Contoso}
-                    className={styles.headerIcon}
-                    aria-hidden="true"
-                    alt="eInfochips Co-Pilot Logo"
-                  />
-                </div>
+      <header className={styles.header} role={"banner"}>
+        <Stack
+          className={styles.customStack}
+          horizontal
+          verticalAlign="center"
+          horizontalAlign="end"
+        >
+          <Stack horizontal verticalAlign="center">
+            <div className={styles.headerIconMain}>
+              <img
+                src={Contoso}
+                className={styles.headerIcon}
+                aria-hidden="true"
+                alt="eInfochips Co-Pilot Logo"
+              />
+            </div>
 
-                <div className={styles.centerHeader}>
-                  <Link
-                    to="/"
-                    className={styles.headerTitleContainer}
-                    aria-label="eInfochips Copilot - FAE's Personal AI Assistant"
+            <div className={styles.centerHeader}>
+              <Link
+                to="/"
+                className={styles.headerTitleContainer}
+                aria-label="eInfochips Copilot - FAE's Personal AI Assistant"
+              >
+                <h1 className={styles.headerTitle}>
+                  eInfochips Copilot - FAE's Personal AI Assistant
+                </h1>
+              </Link>
+            </div>
+            <div className={styles.buttonDiv}>
+              <div className={styles.historyDiv}>
+                {appStateContext?.state.isCosmosDBAvailable?.status !==
+                  CosmosDBStatus.NotConfigured && (
+                  <HistoryButton
+                    onClick={handleHistoryClick}
+                    text={
+                      appStateContext?.state?.isChatHistoryOpen
+                        ? "Hide chat history"
+                        : "Show chat history"
+                    }
                   >
-                    <h1 className={styles.headerTitle}>
-                      eInfochips Copilot - FAE's Personal AI Assistant
-                    </h1>
-                  </Link>
-                </div>
-                <div className={styles.buttonDiv}>
-                  <div className={styles.historyDiv}>
-                    {appStateContext?.state.isCosmosDBAvailable?.status !==
-                      CosmosDBStatus.NotConfigured && (
-                      <HistoryButton
-                        onClick={handleHistoryClick}
-                        text={
-                          appStateContext?.state?.isChatHistoryOpen
-                            ? "Hide chat history"
-                            : "Show chat history"
-                        }
-                      >
-                        {appStateContext?.state?.isChatHistoryOpen ? (
-                          <MdVisibility className={styles.historyIcon} />
-                        ) : (
-                          <MdVisibilityOff className={styles.historyIcon} />
-                        )}
-                      </HistoryButton>
+                    {appStateContext?.state?.isChatHistoryOpen ? (
+                      <MdVisibility className={styles.historyIcon} />
+                    ) : (
+                      <MdVisibilityOff className={styles.historyIcon} />
                     )}
-                  </div>
-                  <div className={styles.userDiv}>
-                    {userName && (
-                      <ContactUsButton text={userName}></ContactUsButton>
-                      // <div className={styles.usercontainer}>
-                      //   {/* <div className={styles.userIcon}>
-                      //   <FaUserCircle className={styles.userIcon}/>
-                      // </div> */}
-                      //   <div className={styles.username}>{userName}</div>
-                      // </div>
-                    )}
-                  </div>
+                  </HistoryButton>
+                )}
+              </div>
+              <div className={styles.userDiv}>
+                {userName && (
+                  <ContactUsButton text={userName}></ContactUsButton>
+                  // <div className={styles.usercontainer}>
+                  //   {/* <div className={styles.userIcon}>
+                  //   <FaUserCircle className={styles.userIcon}/>
+                  // </div> */}
+                  //   <div className={styles.username}>{userName}</div>
+                  // </div>
+                )}
+              </div>
 
-                  {/* <a
+              {/* <a
                     href="mailto:sarthak.shah@einfochips.com"
                     style={{ textDecoration: "none" }}
                   >
@@ -202,81 +203,98 @@ const Layout = () => {
                       text="Contact Us"
                     ></ContactUsButton>
                   </a> */}
-                </div>
-              </Stack>
-            </Stack>
-          </header>
-          <Outlet />
-          <Dialog
-            onDismiss={handleSharePanelDismiss}
-            hidden={!isSharePanelOpen}
-            styles={{
-              main: [
-                {
-                  selectors: {
-                    ["@media (min-width: 480px)"]: {
-                      maxWidth: "600px",
-                      background: "#FFFFFF",
-                      boxShadow:
-                        "0px 14px 28.8px rgba(0, 0, 0, 0.24), 0px 0px 8px rgba(0, 0, 0, 0.2)",
-                      borderRadius: "8px",
-                    },
-                  },
+            </div>
+          </Stack>
+        </Stack>
+      </header>
+      <Outlet />
+      <Dialog
+        onDismiss={handleSharePanelDismiss}
+        hidden={!isSharePanelOpen}
+        styles={{
+          main: [
+            {
+              selectors: {
+                ["@media (min-width: 480px)"]: {
+                  maxWidth: "600px",
+                  background: "#FFFFFF",
+                  boxShadow:
+                    "0px 14px 28.8px rgba(0, 0, 0, 0.24), 0px 0px 8px rgba(0, 0, 0, 0.2)",
+                  borderRadius: "8px",
                 },
-              ],
-            }}
-            dialogContentProps={{
-              title: "Share the web app",
-              showCloseButton: true,
+              },
+            },
+          ],
+        }}
+        dialogContentProps={{
+          title: "Share the web app",
+          showCloseButton: true,
+        }}
+      >
+        <Stack
+          horizontal
+          verticalAlign="center"
+          tokens={{ childrenGap: 8 }}
+          style={{ gap: "8px" }}
+        >
+          <TextField
+            className={styles.urlTextBox}
+            defaultValue={window.location.href}
+            readOnly
+            underlined
+          />
+          <div
+            className={styles.copyButtonContainer}
+            role="button"
+            tabIndex={0}
+            aria-label="Copy"
+            onClick={handleCopyClick}
+            onKeyDown={(e) =>
+              e.key === "Enter" || e.key === " " ? handleCopyClick() : null
+            }
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
             }}
           >
-            <Stack
-              horizontal
-              verticalAlign="center"
-              tokens={{ childrenGap: 8 }}
-              style={{ gap: "8px" }}
-            >
-              <TextField
-                className={styles.urlTextBox}
-                defaultValue={window.location.href}
-                readOnly
-                underlined
-              />
-              <div
-                className={styles.copyButtonContainer}
-                role="button"
-                tabIndex={0}
-                aria-label="Copy"
-                onClick={handleCopyClick}
-                onKeyDown={(e) =>
-                  e.key === "Enter" || e.key === " " ? handleCopyClick() : null
-                }
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
-              >
-                <CopyRegular className={styles.copyButton} />
-                <span className={styles.copyButtonText}>{copyText}</span>
-              </div>
-            </Stack>
-          </Dialog>
-          <div style={{ position: "relative" }}>
-            <a
-              href="mailto:sarthak.shah@einfochips.com"
-              style={{
-                textDecoration: "none",
-                position: "absolute",
-                bottom: "0",
-                right: "0",
-                marginRight: "20px",
-              }}
-            >
-              Share Your Feedback
-            </a>
+            <CopyRegular className={styles.copyButton} />
+            <span className={styles.copyButtonText}>{copyText}</span>
           </div>
-        </>
+        </Stack>
+      </Dialog>
+      <div style={{ position: "relative", padding: "10px 20px" }}>
+        <a
+          href="mailto:sarthak.shah@einfochips.com"
+          style={{
+            textDecoration: "none",
+            position: "absolute",
+            bottom: "0",
+            right: "0",
+            marginRight: "20px",
+          }}
+          // className={styles.anchor}
+        >
+          <MdContactMail
+            style={{
+              color: "#FFFFFF",
+              background:
+                "radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)",
+              height: 30,
+              width: 30,
+              marginRight: 20,
+            }}
+            className={
+              appStateContext?.state.isCosmosDBAvailable?.status !==
+              CosmosDBStatus.NotConfigured
+                ? styles.clearChatBroom
+                : styles.clearChatBroomNoCosmos
+            }
+          />
+          {/* Share Your Feedback */}
+        </a>
+      </div>
+      </>
       )}
     </div>
   );

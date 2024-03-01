@@ -174,3 +174,24 @@
   align-items: center;
   color: #242424;
 }
+
+.feedbackDiv {
+  position: relative;
+  padding: 10px 20px;
+  height: 35px;
+  width: 35px;
+}
+
+.anchor {
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 10px;
+}
+
+.clearChatBroom {
+  color: #ffffff;
+  border-radius: 4px;
+  z-index: 1;
+}
