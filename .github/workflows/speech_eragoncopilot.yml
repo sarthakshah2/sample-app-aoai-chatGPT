@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'eragoncopilot'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3652A10CC3643DE836DE41B1075FFDD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A46629238EFF442B862E34A23793EFFD }}
