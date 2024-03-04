@@ -72,7 +72,7 @@ const Layout = () => {
                 src={Contoso}
                 className={styles.headerIcon}
                 aria-hidden="true"
-                alt="eInfochips Co-Pilot Logo"
+                alt="eInfochips"
               />
             </div>
 
