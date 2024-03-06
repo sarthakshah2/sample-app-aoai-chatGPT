@@ -1,4 +1,5 @@
-import { AskResponse, Citation } from "../../api";
+// import { AskResponse, Citation } from "../../api";
+import { AskResponse, Citation } from "../api";
 import { cloneDeep } from "lodash-es";
 
 type ParsedAnswer = {
@@ -14,7 +15,7 @@ export function parseAnswer(answer: AskResponse): ParsedAnswer {
 
     let filteredCitations = [] as Citation[];
     let citationReindex = 0;
-    citationLinks?.forEach(link => {
+    citationLinks?.forEach((link: string) => {
         // Replacing the links/citations with number
         let citationIndex = link.slice(lengthDocN, link.length - 1);
         let citation = cloneDeep(answer.citations[Number(citationIndex) - 1]) as Citation;
