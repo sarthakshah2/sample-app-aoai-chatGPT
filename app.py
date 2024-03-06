@@ -894,7 +894,7 @@ def get_frontend_settings():
         logging.exception("Exception in /frontend_settings")
         return jsonify({"error": str(e)}), 500  
 
-@bp.route("/speech/issueToken", methods=["GET"])
+@app.route("/speech/issueToken", methods=["GET"])
 async def speech_issue_token():
     """Generate short-lived (10 minutes) access token (JWT) for Azure Speech service."""
     if not AZURE_SPEECH_KEY:
