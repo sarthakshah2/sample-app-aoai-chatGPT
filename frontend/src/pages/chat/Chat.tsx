@@ -917,7 +917,6 @@ const Chat = () => {
                   }}
                   aria-label="clear chat button"
                 />
-                <FaMicrophone className={styles.microphoneIconStyle} />
                 <Dialog
                   hidden={hideErrorDialog}
                   onDismiss={handleErrorDialogClose}
@@ -925,6 +924,7 @@ const Chat = () => {
                   modalProps={modalProps}
                 ></Dialog>
               </Stack>
+              <FaMicrophone className={styles.microphoneIconStyle} />
               <QuestionInput
                 clearOnSend
                 placeholder="Type a new question..."
