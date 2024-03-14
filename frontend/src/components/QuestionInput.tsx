@@ -4,7 +4,7 @@ import { SendRegular } from "@fluentui/react-icons";
 import { BsFillSendFill } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import Send from "../../assets/Send.svg";
-import styles from "./QuestionInput.module.css";
+import styles from "./QuestionInput/QuestionInput.module.css";
 
 interface Props {
     onSend: (question: string, id?: string) => void;
